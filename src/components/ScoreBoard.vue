@@ -84,7 +84,7 @@
       </q-card-section>
     </q-card>
 
-    <!-- <stepper-config :step-dialog="isStepDialog" @closeDialog="isStepDialog = false" /> -->
+    <stepper-config :step-dialog="isStepDialog" @closeDialog="close" />
   </div>
 </template>
 
@@ -92,14 +92,20 @@
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 export default {
   name: 'ScoreBoard',
+  props: {
+    configOn: {
+      type: Boolean,
+      default: false
+    }
+  },
   data () {
     return {
       isStepDialog: false
     }
   },
   components: {
-    Timer: () => import('./Timer')
-    // StepperConfig: () => import('./StepperConfig')
+    Timer: () => import('./Timer'),
+    StepperConfig: () => import('./StepperConfig')
   },
   computed: {
     ...mapGetters('BadmintonStore', {
@@ -139,6 +145,15 @@ export default {
     },
     resetStopwatch () {
       this.resetTimer()
+    },
+    close () {
+      this.isStepDialog = false
+      this.$emit('config-off')
+    }
+  },
+  watch: {
+    configOn () {
+      this.isStepDialog = this.configOn
     }
   }
 }

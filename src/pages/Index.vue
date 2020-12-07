@@ -1,7 +1,7 @@
 <template>
   <q-page>
-    <badminton-field />
-    <score-board />
+    <badminton-field @config-on="configOn = true" />
+    <score-board :config-on="configOn" @config-off="configOn = false" />
   </q-page>
 </template>
 
@@ -9,6 +9,11 @@
 import { mapMutations } from 'vuex'
 export default {
   name: 'PageIndex',
+  data () {
+    return {
+      configOn: false
+    }
+  },
   created () {
     this.setDefault()
   },

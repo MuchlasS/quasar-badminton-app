@@ -13,6 +13,7 @@ export const getNameB1 = state => state.nameB1
 export const getNameB2 = state => state.nameB2
 
 export const getIsSingle = state => state.isSingle
+export const getIsBallA = state => state.isBallA
 
 export const getTimer = state => state.timer
 

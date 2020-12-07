@@ -5,8 +5,10 @@
       <div class="col-6">
         <div>
           <q-card
-            @click="handleClick('a')"
-            :class="`${isServerA1 ? 'bg-warning' : 'bg-positive'} my-card text-white`"
+            @click="addScoreA"
+            :class="
+              `${isServerA1 ? 'bg-warning' : 'bg-positive'} my-card text-white`
+            "
             square
             flat
             bordered
@@ -19,8 +21,10 @@
 
         <div>
           <q-card
-            @click="handleClick('a')"
-            :class="`${isServerA2 ? 'bg-warning' : 'bg-positive'} my-card text-white`"
+            @click="addScoreA"
+            :class="
+              `${isServerA2 ? 'bg-warning' : 'bg-positive'} my-card text-white`
+            "
             square
             flat
             bordered
@@ -36,8 +40,10 @@
       <div class="col-6">
         <div>
           <q-card
-            @click="handleClick('b')"
-            :class="`${isServerB1 ? 'bg-warning' : 'bg-positive'} my-card text-white`"
+            @click="addScoreB"
+            :class="
+              `${isServerB1 ? 'bg-warning' : 'bg-positive'} my-card text-white`
+            "
             square
             flat
             bordered
@@ -50,8 +56,10 @@
 
         <div>
           <q-card
-            @click="handleClick('b')"
-            :class="`${isServerB2 ? 'bg-warning' : 'bg-positive'} my-card text-white`"
+            @click="addScoreB"
+            :class="
+              `${isServerB2 ? 'bg-warning' : 'bg-positive'} my-card text-white`
+            "
             square
             flat
             bordered
@@ -77,6 +85,8 @@ export default {
       nameA2: 'getNameA2',
       nameB1: 'getNameB1',
       nameB2: 'getNameB2',
+      score1: 'getScore1',
+      score2: 'getScore2',
       // FLAG
       isServerA1: 'getIsServerA1',
       isServerA2: 'getIsServerA2',
@@ -93,14 +103,19 @@ export default {
       setScore1: 'setScore1',
       setScore2: 'setScore2'
     }),
-    handleClick (value) {
-      if (value === 'a') {
+    addScoreA () {
+      if (this.score1 === 0 && this.score2 === 0 && this.nameA2 === '') {
+        this.$emit('config-on')
+      } else {
         this.setScore1()
+      }
+    },
+    addScoreB () {
+      if (this.score1 === 0 && this.score2 === 0 && this.nameB1 === '') {
+        this.$emit('config-on')
       } else {
         this.setScore2()
       }
-      this.resetUndo()
-      this.setScoresHistory()
     }
   }
 }

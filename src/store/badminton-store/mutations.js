@@ -8,10 +8,10 @@ export const setDefault = state => {
   state.teamA = 'Team 1'
   state.teamB = 'Team 2'
   state.scoresHistory = []
-  state.nameA1 = 'Team 1 Kiri'
-  state.nameA2 = 'Team 1 Kanan'
-  state.nameB1 = 'Team 2 Kanan'
-  state.nameB2 = 'Team 2 Kiri'
+  state.nameA1 = ''
+  state.nameA2 = ''
+  state.nameB1 = ''
+  state.nameB2 = ''
 
   // FLAG
   // SERVER A1 = TEAM 1 KIRI
@@ -62,46 +62,42 @@ export const setNameB2 = (state, value) => {
 // SCORING
 export const setScore1 = state => {
   state.score1++
-  // CHANGE POSITION A
-  const name = state.nameA1
-  if (state.isBallA) {
-    state.nameA1 = state.nameA2
-    state.nameA2 = name
-  }
-  if (state.score1 % 2 === 0) {
-    state.isServerA1 = false
-    state.isServerA2 = true
-    state.isServerB1 = false
-    state.isServerB2 = false
-  } else {
-    state.isServerA1 = true
-    state.isServerA2 = false
-    state.isServerB1 = false
-    state.isServerB2 = false
-  }
-  state.isBallA = true
 }
 
 export const setScore2 = state => {
   state.score2++
-  // CHANGE POSITION B
-  const name = state.nameB1
-  if (!state.isBallA) {
-    state.nameB1 = state.nameB2
-    state.nameB2 = name
-  }
-  if (state.score2 % 2 === 0) {
-    state.isServerB1 = true
-    state.isServerB2 = false
-    state.isServerA1 = false
-    state.isServerA2 = false
-  } else {
-    state.isServerB1 = false
-    state.isServerB2 = true
-    state.isServerA1 = false
-    state.isServerA2 = false
-  }
-  state.isBallA = false
+}
+
+export const setScoreAEven = state => {
+  state.isServerA1 = false
+  state.isServerA2 = true
+  state.isServerB1 = false
+  state.isServerB2 = false
+}
+
+export const setScoreAOdd = state => {
+  state.isServerA1 = true
+  state.isServerA2 = false
+  state.isServerB1 = false
+  state.isServerB2 = false
+}
+
+export const setScoreBEven = state => {
+  state.isServerA1 = false
+  state.isServerA2 = false
+  state.isServerB1 = true
+  state.isServerB2 = false
+}
+
+export const setScoreBOdd = state => {
+  state.isServerA1 = false
+  state.isServerA2 = false
+  state.isServerB1 = false
+  state.isServerB2 = true
+}
+
+export const setIsBallA = (state, value) => {
+  state.isBallA = value
 }
 
 export const setScoresHistory = state => {
@@ -127,6 +123,18 @@ export const setScoresHistory = state => {
   }
 
   state.scoresHistory.push(scores)
+}
+
+export const setPositionA = state => {
+  const name = state.nameA1
+  state.nameA1 = state.nameA2
+  state.nameA2 = name
+}
+
+export const setPositionB = state => {
+  const name = state.nameB1
+  state.nameB1 = state.nameB2
+  state.nameB2 = name
 }
 
 export const setUndo = state => {

@@ -1,5 +1,5 @@
 <template>
-  <q-dialog v-model="stepDialog" class="q-pa-md">
+  <q-dialog v-model="stepDialog" class="q-pa-md" persistent>
     <q-card>
       <q-card-section class="row items-center q-pb-none">
         <div class="text-h6">Form</div>
@@ -61,6 +61,7 @@
             :done="step > 3"
           >
             <single-form
+              v-if="!isSingle"
               :value="valuePlayerA1"
               :label="labelPlayerA1"
               @setValue="setPlayerA1Value"
@@ -74,6 +75,7 @@
 
           <q-step :name="4" title="Create an ad" icon="add_comment">
             <single-form
+              v-if="!isSingle"
               :value="valuePlayerB2"
               :label="labelPlayerB2"
               @setValue="setPlayerB2Value"
@@ -158,7 +160,8 @@ export default {
       setNameA2: 'setNameA2',
       setNameB1: 'setNameB1',
       setNameB2: 'setNameB2',
-      setIsSingle: 'setIsSingle'
+      setIsSingle: 'setIsSingle',
+      setScoresHistory: 'setScoresHistory'
     }),
     setTeamAValue (val) {
       this.setTeamA(val)
@@ -183,6 +186,7 @@ export default {
         this.$refs.stepper.next()
       } else {
         this.$emit('closeDialog')
+        this.setScoresHistory()
       }
     }
   }
