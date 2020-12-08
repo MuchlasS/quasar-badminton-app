@@ -1,9 +1,5 @@
 <template>
-  <q-dialog
-    ref="dialog"
-    persistent
-    @hide="onDialogHide"
-  >
+  <q-dialog ref="dialog" persistent @hide="onDialogHide">
     <q-card class="my-card">
       <q-card-section
         v-if="title !== null"
@@ -21,40 +17,50 @@
         v-if="iconName !== '' && iconName === 'check_circle'"
         class="success-icon row flex flex-center"
       >
-        <q-icon
-          size="60px"
-          :name="`${iconName}`"
-          :class="`${iconClass}`"
-        />
+        <q-icon size="60px" :name="`${iconName}`" :class="`${iconClass}`" />
       </q-card-section>
       <q-card-section
         v-if="iconName !== '' && iconName === 'cancel'"
         class="reject-icon row flex flex-center"
       >
-        <q-icon
-          size="60px"
-          :name="`${iconName}`"
-          :class="`${iconClass}`"
-        />
+        <q-icon size="60px" :name="`${iconName}`" :class="`${iconClass}`" />
       </q-card-section>
-      <q-card-section
-        v-if="submessage !== null"
-        class="text-center"
-      >
-        {{ submessage }}
-      </q-card-section>
-      <q-card-section
-        v-if="message !== null && !isForm"
-        class="text-center"
-      >
+      <q-card-section class="text-center">
         {{ message }}
       </q-card-section>
-      <q-card-section v-if="isForm">
-        <div
-          v-for="item in datas"
-          :key="item"
-        >
-          {{ item }}
+      <q-card-section
+        v-for="(item, idx) in scoresHistory"
+        :key="idx"
+        class="text-center row"
+      >
+        <div class="col">
+          <div>
+            {{ item.teamA }}
+            <q-chip
+              v-if="item.isBallA"
+              dense
+              color="secondary"
+              text-color="white"
+            >
+              Ball
+            </q-chip>
+          </div>
+          <div class="text-weight-bold">{{ item.score1 }}</div>
+        </div>
+        <div class="col">vs</div>
+        <div class="col">
+          <div>
+            {{ item.teamB }}
+            <q-chip
+              v-if="!item.isBallA"
+              dense
+              color="secondary"
+              text-color="white"
+            >
+              Ball
+            </q-chip>
+          </div>
+          <div class="text-weight-bold">{{ item.score2 }}</div>
         </div>
       </q-card-section>
       <q-card-actions align="center">
@@ -77,7 +83,7 @@ export default {
   name: 'CustomAlert',
   props: {
     title: String,
-    submessage: String,
+    scoresHistory: Array,
     message: String,
     iconPath: { type: String, default: '' },
     iconName: { type: String, default: '' },
@@ -85,13 +91,12 @@ export default {
     label: {
       type: String,
       default: 'Ok'
-    },
-    isForm: Boolean
+    }
   },
   computed: {
     datas () {
       const res = this.message.split(',')
-      return res.filter((item) => item !== '')
+      return res.filter(item => item !== '')
     }
   },
   methods: {
@@ -137,10 +142,10 @@ export default {
   font-weight: bold;
 }
 .my-card {
-  min-width: 300px;
+  min-width: 480px;
 }
 .success-icon {
-  color: #1EC759;
+  color: #1ec759;
 }
 .reject-icon {
   margin-bottom: 8px;

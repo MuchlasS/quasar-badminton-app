@@ -16,6 +16,7 @@ export const getIsSingle = state => state.isSingle
 export const getIsBallA = state => state.isBallA
 
 export const getTimer = state => state.timer
+export const getScoresHistory = state => state.scoresHistory
 
 // FLAG
 export const getIsServerA1 = state => state.isServerA1

@@ -3,7 +3,7 @@ import AlertComponent from 'src/components/Dialog/AlertComponent'
 export const alertDialog = ({
   title,
   message = null,
-  submessage = null,
+  scoresHistory = null,
   onYes = () => { },
   persistent = false,
   label = 'Ok',
@@ -19,7 +19,7 @@ export const alertDialog = ({
     title,
     isForm,
     message,
-    submessage,
+    scoresHistory,
     label,
     iconPath,
     iconName,
