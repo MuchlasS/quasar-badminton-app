@@ -125,6 +125,8 @@ export const setScoresHistory = state => {
   state.scoresHistory.push(scores)
 }
 
+export const shiftScoresHistory = state => state.scoresHistory.shift()
+
 export const setPositionA = state => {
   const name = state.nameA1
   state.nameA1 = state.nameA2
@@ -135,6 +137,34 @@ export const setPositionB = state => {
   const name = state.nameB1
   state.nameB1 = state.nameB2
   state.nameB2 = name
+}
+
+export const setPositionSingleA = state => {
+  if (state.isServerA2 && state.nameA2 === '') {
+    state.nameA2 = state.nameA1
+    state.nameA1 = ''
+    state.nameB1 = state.nameB2
+    state.nameB2 = ''
+  } else if (state.isServerA1 && state.nameA1 === '') {
+    state.nameA1 = state.nameA2
+    state.nameA2 = ''
+    state.nameB2 = state.nameB1
+    state.nameB1 = ''
+  }
+}
+
+export const setPositionSingleB = state => {
+  if (state.isServerB1 && state.nameB1 === '') {
+    state.nameB1 = state.nameB2
+    state.nameB2 = ''
+    state.nameA2 = state.nameA1
+    state.nameA1 = ''
+  } else if (state.isServerB2 && state.nameB2 === '') {
+    state.nameB2 = state.nameB1
+    state.nameB1 = ''
+    state.nameA1 = state.nameA2
+    state.nameA2 = ''
+  }
 }
 
 export const setUndo = state => {

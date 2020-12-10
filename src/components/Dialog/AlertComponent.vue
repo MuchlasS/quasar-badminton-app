@@ -40,10 +40,7 @@
               v-if="item.isBallA"
               dense
               color="secondary"
-              text-color="white"
-            >
-              Ball
-            </q-chip>
+            />
           </div>
           <div class="text-weight-bold">{{ item.score1 }}</div>
         </div>
@@ -55,10 +52,7 @@
               v-if="!item.isBallA"
               dense
               color="secondary"
-              text-color="white"
-            >
-              Ball
-            </q-chip>
+            />
           </div>
           <div class="text-weight-bold">{{ item.score2 }}</div>
         </div>

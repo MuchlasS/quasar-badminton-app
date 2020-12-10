@@ -4,7 +4,7 @@ export function someAction (context) {
 */
 import { alertDialog, showNotification } from 'src/utils.js'
 // SCORING
-export const setWinner = ({ getters, dispatch }) => {
+export const setWinner = ({ getters, dispatch, commit }) => {
   const { getScore1, getScore2, getTeam1, getTeam2, getScoresHistory } = getters
   const title = 'Pemenang set'
 
@@ -13,10 +13,10 @@ export const setWinner = ({ getters, dispatch }) => {
     (getScore1 >= 20 && getScore2 >= 20 && getScore1 === getScore2 + 2) ||
     (getScore2 === 29 && getScore1 === 30)
   ) {
-    getScoresHistory.shift()
+    commit('shiftScoresHistory')
     alertDialog({
       title,
-      message: `Selamat Team ${getTeam1} pemenangnya`,
+      message: `Selamat ${getTeam1} pemenangnya`,
       scoresHistory: getScoresHistory,
       onYes () {
         dispatch('setScore')
@@ -27,10 +27,10 @@ export const setWinner = ({ getters, dispatch }) => {
     (getScore1 >= 20 && getScore2 >= 20 && getScore2 === getScore1 + 2) ||
     (getScore1 === 29 && getScore2 === 30)
   ) {
-    getScoresHistory.shift()
+    commit('shiftScoresHistory')
     alertDialog({
       title,
-      message: `Selamat Team ${getTeam2} pemenangnya`,
+      message: `Selamat ${getTeam2} pemenangnya`,
       scoresHistory: getScoresHistory,
       onYes () {
         dispatch('setScore')
@@ -57,24 +57,22 @@ export const setScore = ({ commit, dispatch }) => {
   // SAVE SCORE LAMA KE DB
   commit('setDefault')
   dispatch('reset')
-  window.location.reload()
 }
 
 export const setScore1 = ({ dispatch, commit, getters }) => {
   commit('setScore1')
   const { getScore1, getIsSingle } = getters
-  if (!getIsSingle) {
-    dispatch('setPositionDouble')
-  }
+  if (!getIsSingle) dispatch('setPositionDouble')
+
   commit('setIsBallA', true)
 
   if (getScore1 % 2 === 0) {
     commit('setScoreAEven')
-    dispatch('setPositionSingle', { aEven: true })
   } else {
     commit('setScoreAOdd')
-    dispatch('setPositionSingle', { aOdd: true })
   }
+
+  if (getIsSingle) dispatch('setPositionSingle')
 
   commit('resetUndo')
   commit('setScoresHistory')
@@ -84,18 +82,17 @@ export const setScore1 = ({ dispatch, commit, getters }) => {
 export const setScore2 = ({ dispatch, commit, getters }) => {
   commit('setScore2')
   const { getScore2, getIsSingle } = getters
-  if (!getIsSingle) {
-    dispatch('setPositionDouble')
-  }
+  if (!getIsSingle) dispatch('setPositionDouble')
+
   commit('setIsBallA', false)
 
   if (getScore2 % 2 === 0) {
     commit('setScoreBEven')
-    dispatch('setPositionSingle', { bEven: true })
   } else {
     commit('setScoreBOdd')
-    dispatch('setPositionSingle', { bOdd: true })
   }
+
+  if (getIsSingle) dispatch('setPositionSingle')
 
   commit('resetUndo')
   commit('setScoresHistory')
@@ -103,40 +100,13 @@ export const setScore2 = ({ dispatch, commit, getters }) => {
 }
 
 export const setPositionSingle = (
-  { commit, getters },
-  { aEven = false, aOdd = false, bEven = false, bOdd = false }
+  { commit, getters }
 ) => {
-  const { getIsSingle, getIsBallA, getScore1, getScore2 } = getters
-  console.log(
-    'getIsSingle : ',
-    getIsSingle,
-    'getIsBallA : ',
-    getIsBallA,
-    'getScore1 : ',
-    getScore1,
-    'aEven: ',
-    aEven,
-    'aOdd: ',
-    aOdd,
-    'bEven: ',
-    bEven,
-    'bOdd: ',
-    bOdd
-  )
-  if (
-    getIsSingle &&
-    getIsBallA &&
-    ((getScore1 % 2 === 0 && aEven) || (getScore1 % 2 !== 0 && aOdd))
-  ) {
-    commit('setPositionA')
-    commit('setPositionB')
-  } else if (
-    getIsSingle &&
-    !getIsBallA &&
-    ((getScore2 % 2 === 0 && bEven) || (getScore2 % 2 !== 0 && bOdd))
-  ) {
-    commit('setPositionA')
-    commit('setPositionB')
+  const { getIsBallA } = getters
+  if (getIsBallA) {
+    commit('setPositionSingleA')
+  } else {
+    commit('setPositionSingleB')
   }
 }
 

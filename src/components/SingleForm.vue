@@ -17,17 +17,14 @@ export default {
       default: ''
     }
   },
-  data () {
-    return {
-      model: ''
-    }
-  },
-  watch: {
-    value (val) {
-      this.model = val
-    },
-    model (val) {
-      this.$emit('setValue', val)
+  computed: {
+    model: {
+      get () {
+        return this.value
+      },
+      set (value) {
+        this.$emit('setValue', value)
+      }
     }
   }
 }
