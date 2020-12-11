@@ -84,7 +84,7 @@ export default {
     iconClass: { type: String, default: '' },
     label: {
       type: String,
-      default: 'Ok'
+      default: 'OK'
     }
   },
   computed: {
@@ -130,19 +130,19 @@ export default {
   }
 }
 </script>
-<style>
-.font-22 {
-  font-size: 22px;
-  font-weight: bold;
-}
-.my-card {
-  min-width: 480px;
-}
-.success-icon {
-  color: #1ec759;
-}
-.reject-icon {
-  margin-bottom: 8px;
-  color: #eb5757;
-}
+<style scoped>
+  .font-22 {
+    font-size: 22px;
+    font-weight: bold;
+  }
+  .my-card {
+    min-width: 480px;
+  }
+  .success-icon {
+    color: #1ec759;
+  }
+  .reject-icon {
+    margin-bottom: 8px;
+    color: #eb5757;
+  }
 </style>

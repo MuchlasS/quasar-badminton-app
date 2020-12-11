@@ -1,47 +1,49 @@
 <template>
-  <div class="absolute-center">
-    <q-card class="score-card q-px-xl">
+  <div class="absolute-center my-card">
+    <q-card class="q-px-xl q-py-md">
       <!-- LOGO & TYPOGRAPHY -->
       <q-card-section class="flex flex-center">
-        <div class="row">
-          <img src="~assets/img/logo.svg" class="q-px-sm col" />
-          <div class="text-h5 font-bold text-secondary q-py-md col">
-            TetaScore
-          </div>
-        </div>
+        <img src="~assets/img/tetascore.svg" class="q-pr-md my-img col" contain />
       </q-card-section>
 
       <!-- SCORE & TEAM NAME -->
-      <q-card-section class="flex flex-center">
-        <div class="row">
+      <q-card-section >
+        <div class="row items-center justify-center q-pt-lg q-pb-xl">
           <!-- TEAM 1 -->
-          <div class="col text-center">
-            <div class="text-h6 text-regular q-mb-md">{{ team1 }}</div>
-            <div class="text-h2 text-bold">{{ score1 }}</div>
+          <div class="col-md-4 col-sm-12 text-center">
+            <q-card class="q-pa-md bg-deep-purple-9">
+            <div class="text-h6 text-regular text-white">{{ team1 }}</div>
+            <div class="text-h2 text-bold q-mt-md text-white">{{ score1 }}</div>
+            </q-card>
           </div>
 
           <!-- TYPOGRAPYH VS -->
-          <div class="col text-center q-mx-lg q-pa-lg">
-            <timer />
-            <q-chip color="secondary" text-color="white" size="xl" label="vs" />
-            <q-btn
-              class="q-mt-sm"
-              :color="`${isStart ? 'warning' : 'positive'}`"
-              :label="`${isStart ? 'Pause' : 'Start'} Timer`"
-              @click="stopWatchButton"
-            />
-            <q-btn
-              class="q-mt-sm"
-              label="Reset Timer"
-              color="negative"
-              @click="resetStopwatch"
-            />
+          <div class="col-md-4 col-sm-12 text-center q-pa-lg">
+            <div class="text-h4 text-grey-9 gt-xs">VS</div>
+            <div class="text-h6 text-grey-9 lt-sm">VS</div>
           </div>
           <!-- TEAM 2 -->
-          <div class="col text-center">
-            <div class="text-h6 text-regular q-mb-md">{{ team2 }}</div>
-            <div class="text-h2 text-bold">{{ score2 }}</div>
+          <div class="col-md-4 col-sm-12 text-center">
+            <q-card class="q-pa-md bg-grey-9">
+            <div class="text-h6 text-regular text-white">{{ team2 }}</div>
+            <div class="text-h2 text-bold q-mt-md text-white">{{ score2 }}</div>
+            </q-card>
           </div>
+        </div>
+
+        <div class="flex flex-center">
+          <timer />
+        </div>
+        <div class="row justify-center q-pt-lg">
+          <q-btn class="my-btn q-mr-xs" color="grey-9" :outline="isStart" unelevated @click="stopWatchButton">
+            <q-icon class="q-mr-sm" :name="`${isStart ? 'pause' : 'play_arrow'}`"
+              :color="`${isStart ? 'grey-9' : 'white'}`" />
+            <div :class="`${isStart ? 'text-grey-9' : 'text-white'}`">{{isStart ? 'Pause' : 'Start'}}</div>
+          </q-btn>
+          <q-btn class="my-btn q-ml-xs" unelevated @click="resetStopwatch">
+            <q-icon class="q-mr-sm" name="replay" color="grey-9" />
+            <div class="text-grey-9">Reset</div>
+          </q-btn>
         </div>
       </q-card-section>
 
@@ -51,32 +53,24 @@
           <div class="col">
             <q-btn flat @click="undo" :disable="disableUndo">
               <div>
-                <img src="~assets/img/undo.svg" class="q-mb-sm" />
-                <div class="text-caption text-secondary">
-                  Undo
-                </div>
+                <q-icon name="undo" :color="disableUndo ? 'deep-purple-4' : 'deep-purple-9'" class="q-mb-sm"/>
+                <div class="text-caption text-deep-purple-9">Undo</div>
               </div>
             </q-btn>
           </div>
-
           <div class="col">
             <q-btn flat @click="redo" :disable="!isUndo">
               <div>
-                <img src="~assets/img/redo.svg" class="q-mb-sm" />
-                <div class="text-caption text-secondary">
-                  Redo
-                </div>
+              <q-icon name="redo" :color="disableUndo ? 'deep-purple-4' : 'deep-purple-9'" class="q-mb-sm"/>
+              <div class="text-caption text-deep-purple-9">Redo</div>
               </div>
             </q-btn>
           </div>
-
           <div class="col">
             <q-btn flat @click="config">
               <div>
-                <img src="~assets/img/config.svg" class="q-mb-sm" />
-                <div class="text-caption text-secondary">
-                  Config
-                </div>
+              <q-icon name="settings" color="deep-purple-9" class="q-mb-sm"/>
+              <div class="text-caption text-deep-purple-9">Config</div>
               </div>
             </q-btn>
           </div>
@@ -159,5 +153,17 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+  .my-card {
+    min-width: 70vh;
+  }
+
+  .my-img {
+    max-width: 150px;
+    height: 30px;
+  }
+
+  .my-btn {
+    width: 120px;
+  }
 </style>

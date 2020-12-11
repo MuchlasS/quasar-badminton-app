@@ -7,11 +7,10 @@
           <q-card
             @click="addScoreA"
             :class="
-              `${isServerA1 ? 'bg-warning' : 'bg-positive'} my-card text-white`
+              `${isServerA1 ? 'bg-deep-purple-9' : 'bg-deep-purple-2'} my-card ${isServerA1 ? 'text-white' : 'text-deep-purple-9'}`
             "
             square
             flat
-            bordered
           >
             <q-card-section class="absolute-center">
               <div class="text-h6">{{ nameA1 }}</div>
@@ -23,11 +22,10 @@
           <q-card
             @click="addScoreA"
             :class="
-              `${isServerA2 ? 'bg-warning' : 'bg-positive'} my-card text-white`
+              `${isServerA2 ? 'bg-deep-purple-9' : 'bg-deep-purple-1'} my-card ${isServerA2 ? 'text-white' : 'text-deep-purple-9'}`
             "
             square
             flat
-            bordered
           >
             <q-card-section class="absolute-center">
               <div class="text-h6">{{ nameA2 }}</div>
@@ -42,11 +40,10 @@
           <q-card
             @click="addScoreB"
             :class="
-              `${isServerB1 ? 'bg-warning' : 'bg-positive'} my-card text-white`
+              `${isServerB1 ? 'bg-deep-purple-9' : 'bg-deep-purple-1'} my-card ${isServerB1 ? 'text-white' : 'text-deep-purple-9'}`
             "
             square
             flat
-            bordered
           >
             <q-card-section class="absolute-center">
               <div class="text-h6">{{ nameB1 }}</div>
@@ -58,11 +55,10 @@
           <q-card
             @click="addScoreB"
             :class="
-              `${isServerB2 ? 'bg-warning' : 'bg-positive'} my-card text-white`
+              `${isServerB2 ? 'bg-deep-purple-9' : 'bg-deep-purple-2'} my-card ${isServerB2 ? 'text-white' : 'text-deep-purple-9'}`
             "
             square
             flat
-            bordered
           >
             <q-card-section class="absolute-center">
               <div class="text-h6">{{ nameB2 }}</div>
@@ -121,12 +117,11 @@ export default {
 }
 </script>
 
-<style>
-.my-card {
-  min-height: 47vh;
-  text-align: center;
-  max-width: 50vw;
-  border: 4px solid #f4f5f7;
-  cursor: pointer;
-}
+<style scoped>
+  .my-card {
+    min-height: 47vh;
+    text-align: center;
+    max-width: 50vw;
+    cursor: pointer;
+  }
 </style>
