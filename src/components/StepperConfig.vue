@@ -1,6 +1,6 @@
 <template>
   <q-dialog v-model="stepDialog" class="q-pa-md" persistent>
-    <q-card>
+    <q-card class="my-card">
       <q-card-section class="row items-center q-pb-none">
         <div class="text-h6">Form</div>
         <q-space />
@@ -17,7 +17,7 @@
         <q-stepper
           v-model="step"
           ref="stepper"
-          color="primary"
+          color="deep-purple-9"
           animated
           contracted
           header-nav
@@ -88,19 +88,20 @@
           </q-step>
 
           <template v-slot:navigation>
-            <q-stepper-navigation>
-              <q-btn
-                @click="handleClick"
-                color="primary"
-                :label="step === 4 ? 'Finish' : 'Continue'"
-              />
+            <q-stepper-navigation align="right">
               <q-btn
                 v-if="step > 1"
                 flat
-                color="primary"
+                color="deep-purple-9"
                 @click="$refs.stepper.previous()"
                 label="Back"
                 class="q-ml-sm"
+              />
+              <q-btn
+                class="q-ml-md"
+                @click="handleClick"
+                color="deep-purple-9"
+                :label="step === 4 ? 'Finish' : 'Continue'"
               />
             </q-stepper-navigation>
           </template>
@@ -109,6 +110,7 @@
     </q-card>
   </q-dialog>
 </template>
+
 <script>
 import { mapMutations, mapGetters } from 'vuex'
 export default {
@@ -192,3 +194,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .my-card {
+    width: 700px;
+    max-width: 80vw;
+  }
+</style>

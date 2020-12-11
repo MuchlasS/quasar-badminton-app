@@ -23,7 +23,7 @@ export default {
         return this.value
       },
       set (value) {
-        this.$emit('setValue', value)
+        this.$emit('setValue', value.toUpperCase())
       }
     }
   }

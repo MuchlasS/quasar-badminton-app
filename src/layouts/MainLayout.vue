@@ -1,12 +1,9 @@
 <template>
-  <q-layout view="hHh Lpr fFf">
+  <q-layout view="hHh lpr fFf">
     <q-header elevated>
-      <q-toolbar>
+      <q-toolbar class="my-toolbar bg-grey-9">
         <q-toolbar-title class="text-center">
-          <q-avatar class="q-mr-md">
-            <img src="~assets/img/logo.svg" />
-          </q-avatar>
-          TetamBadminton
+          <img class="my-img" cover src="~assets/img/logo.svg" />
         </q-toolbar-title>
       </q-toolbar>
     </q-header>
@@ -22,3 +19,14 @@ export default {
   name: 'MainLayout'
 }
 </script>
+
+<style scoped>
+  .my-toolbar {
+    min-height: 6vh;
+  }
+  .my-img {
+    width: 260px;
+    max-height: 4vh;
+    padding-top: 1vh;
+  }
+</style>

@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <div class="text-subtitle2">{{ timer }}</div>
-  </div>
+    <div>
+      <div class="text-h5 text-grey-9">{{ timer }}</div>
+    </div>
 </template>
 
 <script>
@@ -16,4 +16,8 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped>
+  .my-card {
+    width: 120px;
+  }
+</style>
