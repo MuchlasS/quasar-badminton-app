@@ -1,7 +1,7 @@
 <template>
   <q-page>
-    <badminton-field @config-on="configOn = true" />
     <score-board :config-on="configOn" @config-off="configOn = false" />
+    <badminton-field @config-on="configOn = true" />
   </q-page>
 </template>
 

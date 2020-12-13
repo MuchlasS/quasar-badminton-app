@@ -121,12 +121,12 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .my-card {
   min-height: 47vh;
   text-align: center;
-  max-width: 50vw;
   border: 4px solid #f4f5f7;
   cursor: pointer;
+  min-width: 30vw;
 }
 </style>

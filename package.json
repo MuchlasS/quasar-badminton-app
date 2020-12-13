@@ -2,7 +2,7 @@
   "name": "app-badminton",
   "version": "0.0.1",
   "description": "A Quasar Framework app",
-  "productName": "Quasar App",
+  "productName": "TetamBadminton",
   "author": "MuchlasS <muchlas148@gmail.com>",
   "private": true,
   "scripts": {
