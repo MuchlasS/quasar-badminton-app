@@ -25,9 +25,10 @@
 
       <!-- BUTTON CONFIG -->
       <q-card-section class="flex flex-center">
-        <div class="row">
+        <div class="row q-gutter-sm">
           <div class="col">
             <q-btn
+              unelevated
               :color="`${isStart ? 'warning' : 'secondary'}`"
               :label="`${isStart ? 'Pause' : 'Start'}`"
               @click="stopWatchButton"
@@ -41,7 +42,7 @@
               color="negative"
               @click="resetStopwatch"
               icon="replay"
-              :disable="!isStart"
+              :disable="disableReset"
             />
           </div>
           <div class="col">
@@ -104,10 +105,14 @@ export default {
       team1: 'getTeam1',
       team2: 'getTeam2',
       isUndo: 'getIsUndo',
-      isStart: 'getIsStart'
+      isStart: 'getIsStart',
+      timer: 'getTimer'
     }),
     disableUndo () {
       return this.score1 === 0 && this.score2 === 0
+    },
+    disableReset () {
+      return this.timer === '00:00:000' && !this.isStart
     }
   },
   methods: {
