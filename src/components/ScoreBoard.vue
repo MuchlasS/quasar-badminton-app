@@ -1,18 +1,8 @@
 <template>
-  <div class="absolute-center">
-    <q-card class="score-card q-px-xl">
-      <!-- LOGO & TYPOGRAPHY -->
-      <q-card-section class="flex flex-center">
-        <div class="row">
-          <img src="~assets/img/logo.svg" class="q-px-sm col" />
-          <div class="text-h5 font-bold text-secondary q-py-md col">
-            TetaScore
-          </div>
-        </div>
-      </q-card-section>
-
+  <div class="row justify-center my-absolute">
+    <q-card class="my-card">
       <!-- SCORE & TEAM NAME -->
-      <q-card-section class="flex flex-center">
+      <q-card-section>
         <div class="row">
           <!-- TEAM 1 -->
           <div class="col text-center">
@@ -22,20 +12,8 @@
 
           <!-- TYPOGRAPYH VS -->
           <div class="col text-center q-mx-lg q-pa-lg">
+            <div class="text-h6 text-regular">vs</div>
             <timer />
-            <q-chip color="secondary" text-color="white" size="xl" label="vs" />
-            <q-btn
-              class="q-mt-sm"
-              :color="`${isStart ? 'warning' : 'positive'}`"
-              :label="`${isStart ? 'Pause' : 'Start'} Timer`"
-              @click="stopWatchButton"
-            />
-            <q-btn
-              class="q-mt-sm"
-              label="Reset Timer"
-              color="negative"
-              @click="resetStopwatch"
-            />
           </div>
           <!-- TEAM 2 -->
           <div class="col text-center">
@@ -49,12 +27,28 @@
       <q-card-section class="flex flex-center">
         <div class="row">
           <div class="col">
+            <q-btn
+              :color="`${isStart ? 'warning' : 'secondary'}`"
+              :label="`${isStart ? 'Pause' : 'Start'}`"
+              @click="stopWatchButton"
+              :icon="`${isStart ? 'pause' : 'play_arrow'}`"
+            />
+          </div>
+          <div class="col">
+            <q-btn
+              flat
+              label="Reset"
+              color="negative"
+              @click="resetStopwatch"
+              icon="replay"
+              :disable="!isStart"
+            />
+          </div>
+          <div class="col">
             <q-btn flat @click="undo" :disable="disableUndo">
               <div>
                 <img src="~assets/img/undo.svg" class="q-mb-sm" />
-                <div class="text-caption text-secondary">
-                  Undo
-                </div>
+                <div class="text-caption text-secondary">Undo</div>
               </div>
             </q-btn>
           </div>
@@ -63,9 +57,7 @@
             <q-btn flat @click="redo" :disable="!isUndo">
               <div>
                 <img src="~assets/img/redo.svg" class="q-mb-sm" />
-                <div class="text-caption text-secondary">
-                  Redo
-                </div>
+                <div class="text-caption text-secondary">Redo</div>
               </div>
             </q-btn>
           </div>
@@ -74,9 +66,7 @@
             <q-btn flat @click="config">
               <div>
                 <img src="~assets/img/config.svg" class="q-mb-sm" />
-                <div class="text-caption text-secondary">
-                  Config
-                </div>
+                <div class="text-caption text-secondary">Config</div>
               </div>
             </q-btn>
           </div>
@@ -159,5 +149,20 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+@media only screen and (max-width: 600px) {
+  .my-card {
+    min-width: 100%;
+  }
+}
+
+@media only screen and (min-width: 601px) {
+  .my-absolute {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
 </style>

@@ -62,7 +62,7 @@ export const setScore = ({ commit, dispatch }) => {
 export const setScore1 = ({ dispatch, commit, getters }) => {
   commit('setScore1')
   const { getScore1, getIsSingle } = getters
-  if (!getIsSingle) dispatch('setPositionDouble')
+  if (!getIsSingle) dispatch('setPositionDouble', { isScoreA: true })
 
   commit('setIsBallA', true)
 
@@ -82,7 +82,7 @@ export const setScore1 = ({ dispatch, commit, getters }) => {
 export const setScore2 = ({ dispatch, commit, getters }) => {
   commit('setScore2')
   const { getScore2, getIsSingle } = getters
-  if (!getIsSingle) dispatch('setPositionDouble')
+  if (!getIsSingle) dispatch('setPositionDouble', { isScoreA: false })
 
   commit('setIsBallA', false)
 
@@ -110,11 +110,11 @@ export const setPositionSingle = (
   }
 }
 
-export const setPositionDouble = ({ getters, commit }) => {
+export const setPositionDouble = ({ getters, commit }, { isScoreA }) => {
   const { getIsBallA } = getters
-  if (getIsBallA) {
+  if (getIsBallA && isScoreA) {
     commit('setPositionA')
-  } else {
+  } else if (!getIsBallA && !isScoreA) {
     commit('setPositionB')
   }
 }
