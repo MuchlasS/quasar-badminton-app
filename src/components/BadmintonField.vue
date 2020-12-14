@@ -129,4 +129,10 @@ export default {
   cursor: pointer;
   min-width: 30vw;
 }
+
+@media only screen and (max-width: 600px) {
+  .my-card {
+    min-height: 32vh;
+  }
+}
 </style>
