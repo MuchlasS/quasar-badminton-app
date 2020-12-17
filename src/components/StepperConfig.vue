@@ -2,7 +2,7 @@
   <q-dialog v-model="stepDialog" class="q-pa-md" persistent>
     <q-card>
       <q-card-section class="row items-center q-pb-none">
-        <div class="text-h6">Form</div>
+        <div class="text-h6">Config</div>
         <q-space />
         <q-btn
           @click="$emit('closeDialog')"
@@ -25,11 +25,10 @@
           <q-step
             :name="1"
             title="Pilih Mode Pertandingan"
-            icon="settings"
             :done="step > 1"
           >
-            <div class="q-gutter-sm q-pa-md">
-              <div class="text-h6">Mode Pertandingan</div>
+            <div class="q-gutter-sm q-pa-md text-center">
+              <div class="text-subtitle2">Match Type</div>
               <q-radio v-model="isSingle" :val="true" label="Single" />
               <q-radio v-model="isSingle" :val="false" label="Ganda" />
             </div>
@@ -39,9 +38,10 @@
             :name="2"
             title="Masukkan Nama Team"
             caption="Optional"
-            icon="create_new_folder"
+            class="text-center"
             :done="step > 2"
           >
+            <div class="text-subtitle2">Team Name</div>
             <single-form
               :value="valueTeamA"
               :label="labelTeamA"
@@ -56,10 +56,11 @@
 
           <q-step
             :name="3"
-            title="Create an ad"
-            icon="add_comment"
+            title="Masukkan Nama Player A"
+            class="text-center"
             :done="step > 3"
           >
+            <div class="text-subtitle2">{{ valueTeamA }}</div>
             <single-form
               v-if="!isSingle"
               :value="valuePlayerA1"
@@ -73,7 +74,8 @@
             />
           </q-step>
 
-          <q-step :name="4" title="Create an ad" icon="add_comment">
+          <q-step :name="4" title="Masukkan Nama Player B" class="text-center">
+            <div class="text-subtitle2">{{ valueTeamB }}</div>
             <single-form
               v-if="!isSingle"
               :value="valuePlayerB2"
@@ -88,7 +90,7 @@
           </q-step>
 
           <template v-slot:navigation>
-            <q-stepper-navigation>
+            <q-stepper-navigation class="row justify-center">
               <q-btn
                 @click="handleClick"
                 color="primary"
@@ -187,6 +189,7 @@ export default {
       } else {
         this.$emit('closeDialog')
         this.setScoresHistory()
+        this.step = 1
       }
     }
   }

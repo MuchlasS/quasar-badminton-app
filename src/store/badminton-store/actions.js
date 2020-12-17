@@ -5,7 +5,7 @@ export function someAction (context) {
 import { alertDialog, showNotification } from 'src/utils.js'
 // SCORING
 export const setWinner = ({ getters, dispatch, commit }) => {
-  const { getScore1, getScore2, getTeam1, getTeam2, getScoresHistory } = getters
+  const { getScore1, getScore2, getTeam1, getTeam2, getScoresHistory, getTimer } = getters
   const title = 'Pemenang set'
 
   if (
@@ -13,10 +13,12 @@ export const setWinner = ({ getters, dispatch, commit }) => {
     (getScore1 >= 20 && getScore2 >= 20 && getScore1 === getScore2 + 2) ||
     (getScore2 === 29 && getScore1 === 30)
   ) {
+    dispatch('pause')
     commit('shiftScoresHistory')
     alertDialog({
       title,
       message: `Selamat ${getTeam1} pemenangnya`,
+      fulltime: getTimer,
       scoresHistory: getScoresHistory,
       onYes () {
         dispatch('setScore')
@@ -31,6 +33,7 @@ export const setWinner = ({ getters, dispatch, commit }) => {
     alertDialog({
       title,
       message: `Selamat ${getTeam2} pemenangnya`,
+      fulltime: getTimer,
       scoresHistory: getScoresHistory,
       onYes () {
         dispatch('setScore')
