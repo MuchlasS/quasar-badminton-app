@@ -266,3 +266,8 @@ export const setIsStart = state => {
 export const setFalseIsStart = state => {
   state.isStart = false
 }
+
+export const setIsFastStart = (state, value) => {
+  console.log(value)
+  state.isFastStart = value
+}
