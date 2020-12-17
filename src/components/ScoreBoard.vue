@@ -104,6 +104,8 @@ export default {
       score2: 'getScore2',
       team1: 'getTeam1',
       team2: 'getTeam2',
+      nameA2: 'getNameA2',
+      nameB1: 'getNameB1',
       isUndo: 'getIsUndo',
       isStart: 'getIsStart',
       timer: 'getTimer'
@@ -136,7 +138,16 @@ export default {
       this.isStepDialog = true
     },
     stopWatchButton () {
-      this.setTimer()
+      if (
+        this.nameA2 === '' &&
+        this.nameB1 === '' &&
+        this.score1 === 0 &&
+        this.score2 === 0
+      ) {
+        this.isStepDialog = true
+      } else {
+        this.setTimer()
+      }
     },
     resetStopwatch () {
       this.resetTimer()

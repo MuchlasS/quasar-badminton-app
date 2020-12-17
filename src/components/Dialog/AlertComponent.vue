@@ -28,6 +28,12 @@
       <q-card-section class="text-center">
         {{ message }}
       </q-card-section>
+      <q-card-section class="text-center text-bold">
+        Full Time
+      </q-card-section>
+      <q-card-section class="text-center">
+        {{ fulltime }}
+      </q-card-section>
       <q-card-section
         v-for="(item, idx) in scoresHistory"
         :key="idx"
@@ -79,6 +85,7 @@ export default {
     title: String,
     scoresHistory: Array,
     message: String,
+    fulltime: String,
     iconPath: { type: String, default: '' },
     iconName: { type: String, default: '' },
     iconClass: { type: String, default: '' },

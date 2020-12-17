@@ -33,6 +33,10 @@ export const setDefault = state => {
 // SET DATA
 export const setIsSingle = (state, value) => {
   state.isSingle = value
+  if (value === true) {
+    state.nameA1 = ''
+    state.nameB2 = ''
+  }
 }
 
 export const setTeamA = (state, value) => {
@@ -101,25 +105,40 @@ export const setIsBallA = (state, value) => {
 }
 
 export const setScoresHistory = state => {
+  const {
+    isServerA1,
+    isServerA2,
+    isServerB1,
+    isServerB2,
+    isBallA,
+    nameA1,
+    nameA2,
+    nameB1,
+    nameB2,
+    score1,
+    score2,
+    teamA,
+    teamB
+  } = state
   const scores = {
     // FLAG
-    isServerA1: state.isServerA1,
-    isServerA2: state.isServerA2,
-    isServerB1: state.isServerB1,
-    isServerB2: state.isServerB2,
-    isBallA: state.isBallA,
+    isServerA1,
+    isServerA2,
+    isServerB1,
+    isServerB2,
+    isBallA,
 
     // PLAYERS
-    nameA1: state.nameA1,
-    nameA2: state.nameA2,
-    nameB1: state.nameB1,
-    nameB2: state.nameB2,
+    nameA1,
+    nameA2,
+    nameB1,
+    nameB2,
 
     // SCORES
-    score1: state.score1,
-    score2: state.score2,
-    teamA: state.teamA,
-    teamB: state.teamB
+    score1,
+    score2,
+    teamA,
+    teamB
   }
 
   state.scoresHistory.push(scores)
