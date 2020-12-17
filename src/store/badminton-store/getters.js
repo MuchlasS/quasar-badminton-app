@@ -25,3 +25,4 @@ export const getIsServerB1 = state => state.isServerB1
 export const getIsServerB2 = state => state.isServerB2
 export const getIsUndo = state => state.isUndo
 export const getIsStart = state => state.isStart
+export const getIsFastStart = state => state.isFastStart

@@ -108,7 +108,8 @@ export default {
       nameB1: 'getNameB1',
       isUndo: 'getIsUndo',
       isStart: 'getIsStart',
-      timer: 'getTimer'
+      timer: 'getTimer',
+      isFastStart: 'getIsFastStart'
     }),
     disableUndo () {
       return this.score1 === 0 && this.score2 === 0
@@ -137,12 +138,12 @@ export default {
     config () {
       this.isStepDialog = true
     },
+
     stopWatchButton () {
       if (
-        this.nameA2 === '' &&
-        this.nameB1 === '' &&
         this.score1 === 0 &&
-        this.score2 === 0
+        this.score2 === 0 &&
+        !this.isFastStart
       ) {
         this.isStepDialog = true
       } else {

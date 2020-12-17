@@ -91,7 +91,8 @@ export default {
       isServerA1: 'getIsServerA1',
       isServerA2: 'getIsServerA2',
       isServerB1: 'getIsServerB1',
-      isServerB2: 'getIsServerB2'
+      isServerB2: 'getIsServerB2',
+      isFastStart: 'getIsFastStart'
     })
   },
   methods: {
@@ -104,14 +105,14 @@ export default {
       setScore2: 'setScore2'
     }),
     addScoreA () {
-      if (this.score1 === 0 && this.score2 === 0 && this.nameA2 === '') {
+      if (this.score1 === 0 && this.score2 === 0 && this.nameA2 === '' && !this.isFastStart) {
         this.$emit('config-on')
       } else {
         this.setScore1()
       }
     },
     addScoreB () {
-      if (this.score1 === 0 && this.score2 === 0 && this.nameB1 === '') {
+      if (this.score1 === 0 && this.score2 === 0 && this.nameB1 === '' && !this.isFastStart) {
         this.$emit('config-on')
       } else {
         this.setScore2()

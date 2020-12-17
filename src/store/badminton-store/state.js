@@ -19,6 +19,7 @@ export default function () {
     isRedo: false,
     isStart: false,
     isSingle: true,
+    isFastStart: false,
 
     // SCORES DATA
     score1: 0,
